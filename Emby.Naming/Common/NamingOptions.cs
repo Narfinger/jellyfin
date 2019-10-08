@@ -348,6 +348,11 @@ namespace Emby.Naming.Common
                 {
                     IsNamed = true
                 },
+                // "[*] Name 01 [*]
+                new EpisodeExpression(@".*?\[.*?\].*?(?<seriesname>\S+?(\s.+?)*?)[-\s]+(?<epnumber>[0-9]+).*\[.*?\]*[^\\\/]*$")
+                {
+                    IsNamed = true
+                },
                 // foo/S0001.E001 (or x instead of .)
                 new EpisodeExpression(@".*(\\|\/)(?<seriesname>[^\\\/]*)[sS](?<seasonnumber>\d{1,4})[xX\.]?[eE](?<epnumber>\d{1,3})[^\\\/]*$")
                 {
@@ -378,11 +383,6 @@ namespace Emby.Naming.Common
                 new EpisodeExpression(@".*[\\\/][^\\\/]* - (?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*[^\\\/]*$")
                 {
                     IsOptimistic = true,
-                    IsNamed = true
-                },
-                // "[*] Name 01 [*]
-                new EpisodeExpression(@".*?\[.*?\].*?(?<seriesname>\S+?(\s.+?)*?)[-\s]+(?<epnumber>[0-9]+).*\[.*?\]*[^\\\/]*$")
-                {
                     IsNamed = true
                 },
                 // "01 episode title.avi"
