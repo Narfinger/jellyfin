@@ -282,7 +282,7 @@ namespace Emby.Naming.Common
                 ".mka"
             };
 
-            // Notice that these expressions need to match the whole path without the extension
+            // Notice that these expressions need to match the whole path with the extension
             EpisodeExpressions = new[]
             {
                 // *** Start Kodi Standard Naming
@@ -359,7 +359,6 @@ namespace Emby.Naming.Common
                     IsOptimistic = true,
                     IsNamed = true
                 },
-
                 // "1-12 episode title"
                 new EpisodeExpression(@"([0-9]+)-([0-9]+)"),
 
@@ -369,21 +368,23 @@ namespace Emby.Naming.Common
                     IsOptimistic = true,
                     IsNamed = true
                 },
-
                 // "01.foo.avi"
                 new EpisodeExpression(@".*(\\|\/)(?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*\.[^\\\/]+$")
                 {
                     IsOptimistic = true,
                     IsNamed = true
                 },
-
                 // "foo - 01", "foo 2 - 01", "foo - 01 foo", "foo 2 - 01 foo", "foo - 01 - foo", "foo 2 - 01 - bar"
                 new EpisodeExpression(@".*[\\\/][^\\\/]* - (?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*[^\\\/]*$")
                 {
                     IsOptimistic = true,
                     IsNamed = true
                 },
-
+                // "[*] Name 01 [*]
+                new EpisodeExpression(@".*?\[.*?\].*?(?<seriesname>\S+?(\s.+?)*?)[-\s]+(?<epnumber>[0-9]+).*\[.*?\]*[^\\\/]*$")
+                {
+                    IsNamed = true
+                },
                 // "01 episode title.avi"
                 new EpisodeExpression(@"[Ss]eason[\._ ](?<seasonnumber>[0-9]+)[\\\/](?<epnumber>\d{1,3})([^\\\/]*)$")
                 {
@@ -391,16 +392,11 @@ namespace Emby.Naming.Common
                     IsNamed = true
                 },
                 // "Episode 16", "Episode 16 - Title"
-                new EpisodeExpression(@".*[\\\/][^\\\/]* (?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*[^\\\/]*$")
+                new EpisodeExpression(@".*[\\\/][^\\\/]* (?<epnumber>\d{1,3})-(?<endingepnumber>\d{2,3})*[^\\\/]*$")
                 {
                     IsOptimistic = true,
                     IsNamed = true
                 },
-                // "[*] Name 01 [*]
-                new EpisodeExpression( @".*?\[.*?\].*?(?<seriesname>\S+?(\s.+?)*?)[-\s]+(?<epnumber>[0-9]+).*\[.*?\]$")
-                {
-                    IsNamed = true
-                }
             };
 
             EpisodeWithoutSeasonExpressions = new[]
