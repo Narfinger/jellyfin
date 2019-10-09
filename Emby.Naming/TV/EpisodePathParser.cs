@@ -81,7 +81,22 @@ namespace Emby.Naming.TV
 
             var match = expression.Regex.Match(name);
 
-            // (Full)(Season)(Episode)(Extension)
+
+            if (match.Groups["seasonnumber"] && int.TryParse(match.Groups["seasonnumber"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var num))
+            {
+                result.SeasonNumber = num;
+            }
+            if (match.Groups["epnumber"] && int.TryParse(match.Groups["epnumber"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out num))
+            {
+                result.EpisodeNumber = num;
+            }
+            if (match.Groups["seriesname"].Success)
+            {
+                result.SeriesName = match.Groups["seriesname"].Value;
+            }
+            result.Success = result.EpisodeNumber.HasValue; //will be overwritten sometimes
+
+            // we matched 3 out of seriesname, seasonnumber, epnumber, endingepnumber
             if (match.Success && match.Groups.Count >= 3)
             {
                 if (expression.IsByDate)
@@ -115,16 +130,6 @@ namespace Emby.Naming.TV
                 }
                 else if (expression.IsNamed)
                 {
-                    if (int.TryParse(match.Groups["seasonnumber"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var num))
-                    {
-                        result.SeasonNumber = num;
-                    }
-
-                    if (int.TryParse(match.Groups["epnumber"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out num))
-                    {
-                        result.EpisodeNumber = num;
-                    }
-
                     var endingNumberGroup = match.Groups["endingepnumber"];
                     if (endingNumberGroup.Success)
                     {
@@ -142,22 +147,6 @@ namespace Emby.Naming.TV
                         }
                     }
 
-                    result.SeriesName = match.Groups["seriesname"].Value;
-                    result.Success = result.EpisodeNumber.HasValue;
-                }
-                else
-                {
-                    if (int.TryParse(match.Groups[1].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var num))
-                    {
-                        result.SeasonNumber = num;
-                    }
-
-                    if (int.TryParse(match.Groups[2].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out num))
-                    {
-                        result.EpisodeNumber = num;
-                    }
-
-                    result.Success = result.EpisodeNumber.HasValue;
                 }
 
                 // Invalidate match when the season is 200 through 1927 or above 2500
