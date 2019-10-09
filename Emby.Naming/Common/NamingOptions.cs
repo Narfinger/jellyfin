@@ -348,11 +348,6 @@ namespace Emby.Naming.Common
                 {
                     IsNamed = true
                 },
-                // "[*] Name 01 [*][*]
-                new EpisodeExpression( @".*(\\|\/).*?(\[.*?\])*.*?(?<seriesname>\w+?(\s.+?)*?)[-_\s]+(?<epnumber>[0-9]+).*(\[.*?\])*[^\\\/]*$")
-                {
-                    IsNamed = true
-                },
                 // foo/S0001.E001 (or x instead of .)
                 new EpisodeExpression(@".*(\\|\/)(?<seriesname>[^\\\/]*)[sS](?<seasonnumber>\d{1,4})[xX\.]?[eE](?< epnumber >\d{ 1,3})[^\\\/]*$")
                 {
@@ -360,8 +355,8 @@ namespace Emby.Naming.Common
                 },
                 // "01"
                 new EpisodeExpression(@".*[\\\/](?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*\.\w+$")
-    {
-        IsOptimistic = true,
+                {
+                    IsOptimistic = true,
                     IsNamed = true
                 },
                 // "1-12 episode title"
@@ -369,32 +364,37 @@ namespace Emby.Naming.Common
 
                 // "01 - foo", "01-foo.avi"
                 new EpisodeExpression(@".*(\\|\/)(?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*\s?-\s?[^\\\/]*$")
-    {
-        IsOptimistic = true,
+                {
+                    IsOptimistic = true,
                     IsNamed = true
                 },
                 // "01.foo.avi"
                 new EpisodeExpression(@".*(\\|\/)(?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*\.[^\\\/]+$")
-    {
-        IsOptimistic = true,
+                {
+                    IsOptimistic = true,
                     IsNamed = true
                 },
                 // "foo - 01", "foo 2 - 01", "foo - 01 foo", "foo 2 - 01 foo", "foo - 01 - foo", "foo 2 - 01 - bar"
                 new EpisodeExpression(@".*[\\\/][^\\\/]* - (?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*[^\\\/]*$")
-    {
-        IsOptimistic = true,
+                {
+                    IsOptimistic = true,
                     IsNamed = true
                 },
                 // "01 episode title.avi"
                 new EpisodeExpression(@"[Ss]eason[\._ ](?<seasonnumber>[0-9]+)[\\\/](?<epnumber>\d{1,3})([^\\\/]*)$")
-    {
-        IsOptimistic = true,
+                {
+                    IsOptimistic = true,
                     IsNamed = true
                 },
                 // "Episode 16", "Episode 16 - Title"
                 new EpisodeExpression(@".*[\\\/][^\\\/]* (?<epnumber>\d{1,3})-(?<endingepnumber>\d{2,3})*[^\\\/]*$")
-    {
-        IsOptimistic = true,
+                {
+                    IsOptimistic = true,
+                    IsNamed = true
+                },
+                // "[*] Name 01 [*][*]
+                new EpisodeExpression( @".*(\\|\/).*?(\[.*?\])*.*?(?<seriesname>\w+?(\s.+?)*?)[-_\s]+(?<epnumber>[0-9]+).*(\[.*?\])*[^\\\/]*$")
+                {
                     IsNamed = true
                 },
             };
