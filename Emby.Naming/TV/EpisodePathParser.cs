@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.String.Regexp;
 using Emby.Naming.Common;
 
 namespace Emby.Naming.TV
