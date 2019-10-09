@@ -78,6 +78,7 @@ namespace Emby.Naming.TV
             {
                 name = name.Replace('_', '-');
             }
+            name = Regexp.Replace(@"\[.*\]", name, String.Empty);
 
             var match = expression.Regex.Match(name);
 
