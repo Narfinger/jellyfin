@@ -82,11 +82,11 @@ namespace Emby.Naming.TV
             var match = expression.Regex.Match(name);
 
 
-            if (match.Groups["seasonnumber"] && int.TryParse(match.Groups["seasonnumber"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var num))
+            if (match.Groups["seasonnumber"].Success && int.TryParse(match.Groups["seasonnumber"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var num))
             {
                 result.SeasonNumber = num;
             }
-            if (match.Groups["epnumber"] && int.TryParse(match.Groups["epnumber"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out num))
+            if (match.Groups["epnumber"].Success && int.TryParse(match.Groups["epnumber"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out num))
             {
                 result.EpisodeNumber = num;
             }
