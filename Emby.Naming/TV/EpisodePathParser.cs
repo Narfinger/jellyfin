@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.String.Regexp;
+using System.Text.RegularExpressions;
 using Emby.Naming.Common;
 
 namespace Emby.Naming.TV
@@ -79,7 +79,7 @@ namespace Emby.Naming.TV
             {
                 name = name.Replace('_', '-');
             }
-            name = Regexp.Replace(@"\[.*\]", name, String.Empty);
+            name = Regex.Replace(@"\[.*\]", name, String.Empty);
 
             var match = expression.Regex.Match(name);
 
