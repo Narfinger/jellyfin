@@ -349,7 +349,7 @@ namespace Emby.Naming.Common
                     IsNamed = true
                 },
                 // "[*] Name 01 [*][*]
-                new EpisodeExpression(@".*(\\|\/).*?\[.*?\].*?(?<seriesname>\w+?(\s.+?)*?)[-\s]+(?<epnumber>[0-9]+).*(\[.*?\])*[^\\\/]*$")
+                new EpisodeExpression( @".*(\\|\/).*?(\[.*?\])*.*?(?<seriesname>\w+?(\s.+?)*?)[-_\s]+(?<epnumber>[0-9]+).*(\[.*?\])*[^\\\/]*$")
                 {
                     IsNamed = true
                 },
