@@ -86,6 +86,10 @@ namespace Emby.Naming.TV
             {
                 result.SeasonNumber = num;
             }
+            else
+            { //if there is no season found, it might be a single season series
+                result.SeasonNumber = 1;
+            }
             if (match.Groups["epnumber"].Success && int.TryParse(match.Groups["epnumber"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out num))
             {
                 result.EpisodeNumber = num;
