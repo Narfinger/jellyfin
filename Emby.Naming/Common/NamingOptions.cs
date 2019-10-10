@@ -285,12 +285,12 @@ namespace Emby.Naming.Common
             EpisodeExpressions = new[]
             {
                 // *** Begin Kodi Standard Naming
-                // <!-- foo.s01.e01, foo.s01_e01, S01E02 foo, S01 - E02 -->
+                // foo.s01.e01, foo.s01_e01, S01E02 foo, S01 - E02
                 new EpisodeExpression(@".*(\\|\/)(?<seriesname>((?![Ss]([0-9]+)[][ ._-]*[Ee]([0-9]+))[^\\\/])*)?[Ss](?<seasonnumber>[0-9]+)[][ ._-]*[Ee](?<epnumber>[0-9]+)([^\\/]*)$")
                 {
                     IsNamed = true
                 },
-                // <!-- foo.ep01, foo.EP_01 -->
+                // foo.ep01, foo.EP_01
                 new EpisodeExpression(@"[\._ -]()[Ee][Pp]_?([0-9]+)([^\\/]*)$"),
                 new EpisodeExpression("([0-9]{4})[\\.-]([0-9]{2})[\\.-]([0-9]{2})", true)
                 {
@@ -310,11 +310,12 @@ namespace Emby.Naming.Common
                         "dd_MM_yyyy"
                     }
                 },
-
+                //01x01.99
                 new EpisodeExpression("[\\\\/\\._ \\[\\(-]([0-9]+)x([0-9]+(?:(?:[a-i]|\\.[1-9])(?![0-9]))?)([^\\\\/]*)$")
                 {
                     SupportsAbsoluteEpisodeNumbers = true
                 },
+                //Foo/01001
                 new EpisodeExpression(@"[\\\\/\\._ -](?<seriesname>(?![0-9]+[0-9][0-9])([^\\\/])*)[\\\\/\\._ -](?<seasonnumber>[0-9]+)(?<epnumber>[0-9][0-9](?:(?:[a-i]|\\.[1-9])(?![0-9]))?)([\\._ -][^\\\\/]*)$")
                 {
                     IsOptimistic = true,
@@ -325,24 +326,23 @@ namespace Emby.Naming.Common
                 {
                     SupportsAbsoluteEpisodeNumbers = true
                 },
-
                 // *** End Kodi Standard Naming
-
+                // S0001x001
                 new EpisodeExpression(@".*(\\|\/)[sS]?(?<seasonnumber>\d{1,4})[xX](?<epnumber>\d{1,3})[^\\\/]*$")
                 {
                     IsNamed = true
                 },
-
+                // S0001e001
                 new EpisodeExpression(@".*(\\|\/)[sS](?<seasonnumber>\d{1,4})[x,X]?[eE](?<epnumber>\d{1,3})[^\\\/]*$")
                 {
                     IsNamed = true
                 },
-
+                // Foo/S0001/S0001e0001
                 new EpisodeExpression(@".*(\\|\/)(?<seriesname>((?![sS]?\d{1,4}[xX]\d{1,3})[^\\\/])*)?([sS]?(?<seasonnumber>\d{1,4})[xX](?<epnumber>\d{1,3}))[^\\\/]*$")
                 {
                     IsNamed = true
                 },
-
+                // Foo/S0001e001
                 new EpisodeExpression(@".*(\\|\/)(?<seriesname>[^\\\/]*)[sS](?<seasonnumber>\d{1,4})[xX\.]?[eE](?<epnumber>\d{1,3})[^\\\/]*$")
                 {
                     IsNamed = true
@@ -354,31 +354,26 @@ namespace Emby.Naming.Common
                     IsOptimistic = true,
                     IsNamed = true
                 },
-
                 // "1-12 episode title"
                 new EpisodeExpression(@"([0-9]+)-([0-9]+)"),
-
                 // "01 - blah.avi", "01-blah.avi"
                 new EpisodeExpression(@".*(\\|\/)(?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*\s?-\s?[^\\\/]*$")
                 {
                     IsOptimistic = true,
                     IsNamed = true
                 },
-
                 // "01.blah.avi"
                 new EpisodeExpression(@".*(\\|\/)(?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*\.[^\\\/]+$")
                 {
                     IsOptimistic = true,
                     IsNamed = true
                 },
-
                 // "blah - 01.avi", "blah 2 - 01.avi", "blah - 01 blah.avi", "blah 2 - 01 blah", "blah - 01 - blah.avi", "blah 2 - 01 - blah"
                 new EpisodeExpression(@".*[\\\/][^\\\/]* - (?<epnumber>\d{1,3})(-(?<endingepnumber>\d{2,3}))*[^\\\/]*$")
                 {
                     IsOptimistic = true,
                     IsNamed = true
                 },
-
                 // "01 episode title.avi"
                 new EpisodeExpression(@"[Ss]eason[\._ ](?<seasonnumber>[0-9]+)[\\\/](?<epnumber>\d{1,3})([^\\\/]*)$")
                 {
@@ -654,9 +649,9 @@ namespace Emby.Naming.Common
                 @".*(\\|\/)(?<seriesname>[^\\\/]*)[sS](?<seasonnumber>\d{1,4})[xX\.]?[eE](?<epnumber>\d{1,3})((-| - )?[xXeE](?<endingepnumber>\d{1,3}))+[^\\\/]*$",
                 @".*(\\|\/)(?<seriesname>[^\\\/]*)[sS](?<seasonnumber>\d{1,4})[xX\.]?[eE](?<epnumber>\d{1,3})(-[xX]?[eE]?(?<endingepnumber>\d{1,3}))+[^\\\/]*$"
             }.Select(i => new EpisodeExpression(i)
-                {
-                    IsNamed = true
-                }).ToArray();
+            {
+                IsNamed = true
+            }).ToArray();
 
             VideoFileExtensions = extensions
                 .Distinct(StringComparer.OrdinalIgnoreCase)
