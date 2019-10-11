@@ -2451,8 +2451,11 @@ namespace Emby.Server.Implementations.Library
             }
             else
             {
+                // I think this is the offending line!
+                _logger.LogCritical("we are in the correct path");
                 if (!episode.IndexNumber.HasValue || forceRefresh)
                 {
+                    _logger.LogCritical("we would refresh the numbers");
                     if (episode.IndexNumber != episodeInfo.EpisodeNumber)
                     {
                         changed = true;
