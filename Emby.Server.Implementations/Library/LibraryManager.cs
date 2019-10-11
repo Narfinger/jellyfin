@@ -1899,7 +1899,7 @@ namespace Emby.Server.Implementations.Library
         /// <param name="cancellationToken">The cancellation token.</param>
         public void UpdateItem(BaseItem item, BaseItem parent, ItemUpdateType updateReason, CancellationToken cancellationToken)
         {
-            UpdateItems(new [] { item }, parent, updateReason, cancellationToken);
+            UpdateItems(new[] { item }, parent, updateReason, cancellationToken);
         }
 
         /// <summary>
@@ -2386,6 +2386,7 @@ namespace Emby.Server.Implementations.Library
 
         public bool FillMissingEpisodeNumbersFromPath(Episode episode, bool forceRefresh)
         {
+            _logger.LogCritical("Filling missing is called");
             var series = episode.Series;
             bool? isAbsoluteNaming = series == null ? false : string.Equals(series.DisplayOrder, "absolute", StringComparison.OrdinalIgnoreCase);
             if (!isAbsoluteNaming.Value)
