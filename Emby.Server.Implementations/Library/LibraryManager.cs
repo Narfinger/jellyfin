@@ -2459,6 +2459,7 @@ namespace Emby.Server.Implementations.Library
                     if (episode.IndexNumber != episodeInfo.EpisodeNumber)
                     {
                         changed = true;
+                        _logger.LogCritical("we set changed to true");
                     }
 
                     episode.IndexNumber = episodeInfo.EpisodeNumber;
