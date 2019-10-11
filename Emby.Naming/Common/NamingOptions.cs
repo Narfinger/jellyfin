@@ -326,7 +326,7 @@ namespace Emby.Naming.Common
                     SupportsAbsoluteEpisodeNumbers = true
                 },
                 // [bar] Foo - 1 [baz]
-                new EpisodeExpression(@".*?\[.*?\].*?(?<seriesname>.*)[-\s]+(?<epnumber>\d{1,3}).*$") {
+                new EpisodeExpression(@".*?(\[.*?\])+.*?(?<seriesname>.*)[-\s]+(?<epnumber>\d{1,3}).*$") {
                     IsNamed = true,
                 },
                 // *** End Kodi Standard Naming
