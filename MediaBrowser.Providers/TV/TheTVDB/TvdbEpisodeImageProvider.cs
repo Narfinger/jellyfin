@@ -47,7 +47,6 @@ namespace MediaBrowser.Providers.TV.TheTVDB
             var episode = (Episode)item;
             var series = episode.Series;
             var imageResult = new List<RemoteImageInfo>();
-            /*
             var language = item.GetPreferredMetadataLanguage();
             if (series != null && TvdbSeriesProvider.IsValidSeries(series.ProviderIds))
             {
@@ -57,7 +56,7 @@ namespace MediaBrowser.Providers.TV.TheTVDB
                     var episodeInfo = new EpisodeInfo
                     {
                         IndexNumber = episode.IndexNumber.Value,
-                        ParentIndexNumber = episode.ParentIndexNumber.Value,
+                        ParentIndexNumber = episode.ParentIndexNumber.HasValue ? 1 : episode.ParentIndexNumber.Value,
                         SeriesProviderIds = series.ProviderIds
                     };
                     string episodeTvdbId = await _tvDbClientManager
@@ -88,7 +87,6 @@ namespace MediaBrowser.Providers.TV.TheTVDB
                     _logger.LogError(e, "Failed to retrieve episode images for series {TvDbId}", series.GetProviderId(MetadataProviders.Tvdb));
                 }
             }
-*/
             return imageResult;
         }
 
