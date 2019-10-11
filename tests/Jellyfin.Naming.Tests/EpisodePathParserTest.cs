@@ -32,6 +32,7 @@ namespace Emby.Naming.TV
         [Theory]
         [InlineData("/media/Foo/Foo 889.avi", "Foo", 889)]
         [InlineData("/media/[Bar] Foo - 01 [baz][boh])", "Foo", 1)]
+        [InlineData("/media/Foo/[Bar] Foo - 11 [1080p]", "Foo", 11)]
         public void ParseEpisodeWithoutSeason(string path, string name, int episode)
         {
             NamingOptions o = new NamingOptions();

@@ -327,7 +327,7 @@ namespace Emby.Naming.Common
                 },
                 // [bar] Foo - 1 [baz]
                 new EpisodeExpression(@".*?(\[.*?\])+.*?(?<seriesname>.*)[-\s]+(?<epnumber>\d{1,3}).*$") {
-                    IsNamed = true,
+                    IsNamed = false,
                 },
                 // *** End Kodi Standard Naming
                 new EpisodeExpression(@".*(\\|\/)[sS]?(?<seasonnumber>\d{1,4})[xX](?<epnumber>\d{1,3})[^\\\/]*$")
