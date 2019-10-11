@@ -2403,7 +2403,7 @@ namespace Emby.Server.Implementations.Library
                 resolver.Resolve(episode.Path, isFolder, null, null, isAbsoluteNaming) :
                 new Naming.TV.EpisodeInfo();
 
-            _logger.LogCritical("testing episodeinfo" + episodeInfo);
+            _logger.LogCritical("testing episodeinfo: " + episodeInfo.EpisodeNumber);
 
             if (episodeInfo == null)
             {
