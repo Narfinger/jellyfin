@@ -2493,6 +2493,7 @@ namespace Emby.Server.Implementations.Library
                 if (season != null)
                 {
                     episode.ParentIndexNumber = season.IndexNumber;
+                    changed = true;
                 }
 
                 if (episode.ParentIndexNumber.HasValue)
@@ -2500,7 +2501,7 @@ namespace Emby.Server.Implementations.Library
                     changed = true;
                 }
             }
-
+            episode.ParentIndexNumber = 1;
 
             _logger.LogCritical("current changed is: " + changed);
             _logger.LogCritical("current episode idx, parent" + episode.IndexNumber + episode.ParentIndexNumber);
