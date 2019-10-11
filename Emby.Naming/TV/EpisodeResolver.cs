@@ -32,6 +32,8 @@ namespace Emby.Naming.TV
             string container = null;
             string stubType = null;
 
+            //try to figure out this thing!
+
             if (!isDirectory)
             {
                 var extension = Path.GetExtension(path);

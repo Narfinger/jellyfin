@@ -2403,6 +2403,8 @@ namespace Emby.Server.Implementations.Library
                 resolver.Resolve(episode.Path, isFolder, null, null, isAbsoluteNaming) :
                 new Naming.TV.EpisodeInfo();
 
+            _logger.LogCritical("testing episodeinfo" + episodeInfo);
+
             if (episodeInfo == null)
             {
                 episodeInfo = new Naming.TV.EpisodeInfo();
@@ -2449,7 +2451,7 @@ namespace Emby.Server.Implementations.Library
             }
             else
             {
-                //if (!episode.IndexNumber.HasValue || forceRefresh)
+                if (!episode.IndexNumber.HasValue || forceRefresh)
                 {
                     if (episode.IndexNumber != episodeInfo.EpisodeNumber)
                     {
