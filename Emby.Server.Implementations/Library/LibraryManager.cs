@@ -2503,6 +2503,7 @@ namespace Emby.Server.Implementations.Library
 
 
             _logger.LogCritical("current changed is: " + changed);
+            _logger.LogCritical("current episode idx, parent" + episode.IndexNumber + episode.ParentIndexNumber);
 
             return changed;
         }
