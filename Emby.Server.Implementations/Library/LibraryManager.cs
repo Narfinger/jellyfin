@@ -2501,6 +2501,9 @@ namespace Emby.Server.Implementations.Library
                 }
             }
 
+
+            _logger.LogCritical("current changed is: " + changed);
+
             return changed;
         }
 
