@@ -2449,7 +2449,7 @@ namespace Emby.Server.Implementations.Library
             }
             else
             {
-                if (!episode.IndexNumber.HasValue || forceRefresh)
+                //if (!episode.IndexNumber.HasValue || forceRefresh)
                 {
                     if (episode.IndexNumber != episodeInfo.EpisodeNumber)
                     {
